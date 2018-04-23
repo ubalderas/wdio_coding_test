@@ -1,0 +1,125 @@
+<!-- DO NOT EDIT ANYTHING IN THIS FILE!!! -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Test Page</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+  <div id="login_form">
+    <h1>Login</h1>
+    <form id="login">
+      <b>Extension: </b>
+      <input type="text" id="ext_field">
+      <br>
+    </form>
+    <br>
+    <button onclick="login()" id="login_button">Login</button>
+  </div>
+
+  <div>
+    <h3 id="logging_in" style="display:none;">Logging in...</h3>
+  </div>
+
+  <div id="myInfo" style="display:none;">
+    <h1>My Info</h1>
+    <b>Email:</b>
+    <span class="myInfo" id="email"></span>
+    <br>
+    <b>URL:</b>
+    <span class="myInfo" id="url"></span>
+    <br>
+    <b>Phone:</b>
+    <span class="myInfo" id="phone"></span>
+    <br>
+    <button onClick="showChats()" id='showChats'>Show Chats</button>
+    <br>
+    <div id="json_div">
+      <button onclick="buildJSON()" id="buildJSON">Build JSON</button>
+      <pre id="json_output"></pre>
+    </div>
+  </div>
+
+  <div id="myChats" style="display:none;">
+    <h3>Old Chats</h3>
+    <ul class="chats">
+      <li class="chat">
+        <div>Jim Halpert @4:31 PM</div>
+        <div>Hey @Dwight, did you see the memo from Vance Refridgeration?</div>
+      </li>
+      <li class="chat">
+        <div>Dwight Schrute @4:32 PM</div>
+        <div>No...</div>
+      </li>
+      <li class="chat">
+        <div>Jim Halpert @4:33 PM</div>
+        <div>Really? It's in the freezer.</div>
+      </li>
+      <li>Dwight has left the chat.</li>
+    </ul>
+    <h3>NEW chats</h3>
+    <ul class="chats">
+      <li class="chat">
+        <div>Michael Scott @9:01 AM</div>
+        <div>Meeting in the conference room, now!</div>
+      </li>
+      <li class="chat">
+        <div>Dwight Schrute @10:09 AM</div>
+        <div>Bears, beets, Battlestar Galactica.</div>
+      </li>
+      <li class="chat">
+        <div>Toby Flenderson @11:41 AM</div>
+        <div>What are you guys doing for lunch?</div>
+      </li>
+      <li class="chat">
+        <div>Michael Scott @11:42 AM</div>
+        <div>Omg Toby, get out of here!</div>
+      </li>
+      <li class="chat">
+        <div>Angela Martin @2:24 PM</div>
+        <div>I have to leave early to take care of my cats.</div>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    function login() {
+      document.getElementById("email").innerHTML = document.getElementById("ext_field").value + "@dundermifflin.com";
+      document.getElementById("url").innerHTML = "https://www.dundermifflin.com/extension/" + document.getElementById("ext_field").value + "/";
+      document.getElementById("phone").innerHTML = "+167 438 2348 ext " + document.getElementById("ext_field").value;
+      setTimeoutRemove("login_form", 500)
+      setTimeoutDisplay("logging_in", "block", 500)
+      setTimeoutRemove("logging_in", 2500)
+      setTimeoutDisplay("myInfo", "block", 2500)
+    }
+    function showChats() {
+      setTimeoutDisplay("myChats", "block", 4000)
+    }
+    function buildJSON() {
+      var email = document.getElementById("email").innerHTML
+      var url = document.getElementById("url").innerHTML
+      var phone = document.getElementById("phone").innerHTML
+      var json = {
+        email: email,
+        url: url,
+        phone: phone
+      }
+      document.getElementById("json_output").innerHTML = JSON.stringify(json)
+    }
+    function setTimeoutDisplay(id, display, timeout) {
+      setTimeout(function () {
+        document.getElementById(id).style.display = display;
+      }, timeout);
+    }
+    function setTimeoutRemove(id, timeout) {
+      setTimeout(function () {
+        var e = document.getElementById(id);
+        e.parentNode.removeChild(e);
+      }, timeout);
+    }
+  </script>
+</body>
+
+</html>
