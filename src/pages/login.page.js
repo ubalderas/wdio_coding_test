@@ -1,3 +1,6 @@
+import InfoPage from "~/src/pages/info.page.js";
+let infoPage = new InfoPage();
+
 class LoginPage {
   // Elements
   get extensionField() {
@@ -20,6 +23,9 @@ class LoginPage {
 
   login(extension) {
     // Fix me!
+    this.extensionField.setValue(extension);
+    this.loginButton.click();
+    infoPage.pageIsLoaded();
   }
 }
 

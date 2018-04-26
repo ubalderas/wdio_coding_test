@@ -1,4 +1,7 @@
 import LoginPage from "~/src/pages/login.page.js";
+import InfoPage from "~/src/pages/info.page.js";
+
+let infoPage = new InfoPage();
 
 // Do NOT change any of the code in the tests themselves, any code
 // outside of the tests is fair game though...
@@ -27,7 +30,7 @@ describe("My Awesome Website", () => {
       phone: extension
     };
 
-    expect(data).to.equal(expectedData);
+    expect(data).to.deep.equal(expectedData);
   });
 
   it("will show the my extension in the JSON output", () => {
@@ -46,7 +49,7 @@ describe("My Awesome Website", () => {
       phone: extension
     };
 
-    expect(data).to.equal(expectedData);
+    expect(data).to.deep.equal(expectedData);
   });
 
   it("BONUS: will show NEW chat messages", () => {
@@ -66,6 +69,6 @@ describe("My Awesome Website", () => {
       message: "What are you guys doing for lunch?"
     };
 
-    expect(data[2]).to.equal(thirdChat);
+    expect(data[2]).to.deep.equal(thirdChat);
   });
 });

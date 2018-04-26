@@ -9,9 +9,9 @@ exports.config = {
   // according to your user and key information. However if you are using a private Selenium
   // backend you should define the host address, port, and path here.
   //
-  host: "0.0.0.0",
-  port: 4444,
-  path: "/wd/hub",
+  // host: "0.0.0.0",
+  // port: 4444,
+  // path: "/wd/hub",
   services: ["selenium-standalone"],
   //
   // =================
@@ -88,7 +88,7 @@ exports.config = {
   sync: true,
   //
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: "verbose",
+  logLevel: "result",
   //
   // Enables colors for log output.
   coloredLogs: true,
@@ -105,7 +105,7 @@ exports.config = {
   // baseUrl: 'http://localhost:8080',
   //
   // Default timeout for all waitForXXX commands.
-  waitforTimeout: 1000,
+  waitforTimeout: 5000,
   //
   // Initialize the browser instance with a WebdriverIO plugin. The object should have the
   // plugin name as key and the desired plugin options as property. Make sure you have
