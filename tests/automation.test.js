@@ -30,7 +30,7 @@ describe("My Awesome Website", () => {
       phone: extension
     };
 
-    expect(data).to.deep.equal(expectedData);
+    expect(data).to.deep.equal(expectedData); // Added .deep chain method to compare objects
   });
 
   it("will show the my extension in the JSON output", () => {
@@ -49,7 +49,7 @@ describe("My Awesome Website", () => {
       phone: extension
     };
 
-    expect(data).to.deep.equal(expectedData);
+    expect(data).to.deep.equal(expectedData); // Added .deep chain method to compare objects
   });
 
   it("BONUS: will show NEW chat messages", () => {
@@ -69,6 +69,6 @@ describe("My Awesome Website", () => {
       message: "What are you guys doing for lunch?"
     };
 
-    expect(data[2]).to.deep.equal(thirdChat);
+    expect(data[2]).to.deep.equal(thirdChat); // Added .deep chain method to compare objects
   });
 });

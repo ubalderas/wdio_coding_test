@@ -35,10 +35,12 @@ class InfoPage {
   }
   
   parseData() {
+    // Extract text from data elements on the page
     const emailValue = this.emailTextField.getHTML(false);
     const urlValue = this.urlTextField.getHTML(false);
     const phoneValue = this.phoneTextField.getHTML(false);
     
+    // Parse data for comparison against expected data
     const parsedEmail = this.parseEmail(emailValue);
     const parsedUrl = this.parseUrl(urlValue);
     const parsedPhone = this.parsePhone(phoneValue);
@@ -53,10 +55,13 @@ class InfoPage {
   }
 
   parseJson() {
+    // Extract text from jsonOutput element
     const jsonValue = this.jsonOutput.getHTML(false);
     
+    // Parse into an object
     let data = JSON.parse(jsonValue);
 
+    // Parse data for comparison against expected data
     data.email = this.parseEmail(data.email);
     data.url = this.parseUrl(data.url);
     data.phone = this.parsePhone(data.phone);
@@ -64,6 +69,7 @@ class InfoPage {
     return data;
   }
 
+  // String parsing methods for each data type
   parseEmail(textValue) {
     return parseInt(textValue.substring(0, textValue.indexOf('@')));
   }
@@ -77,18 +83,26 @@ class InfoPage {
   }
   
   parseNewChats() {
+    // Wait Until chats are visible
     this.myChats.waitForVisible();
     this.newChats.waitForVisible();
 
+    // This array will contain the parsed data to be used for comparison
     let chatsArray = [];
     
+    // Extract 'li' message elements from the newChats element
     const chatsRaw = this.newChats.elements('li');
     
+    // Loop through the message 'li' elements to parse the data into the object for comparison
     chatsRaw.value.forEach(function(messageElement) {
+      // Some messages do not include 'div' elements on them (like the 'User left the chat' element), so I'm
+      // using an if statement to discriminate between those.
       if (messageElement.isExisting("div")) {
+        // Extract text from the message elements
         let senderAndTime = messageElement.element("div:nth-child(1)").getHTML(false);
         let message = messageElement.element("div:nth-child(2)").getHTML(false);
 
+        // Parse text and push an object to the chatsArray to be returned
         let sender = senderAndTime.substring(0, senderAndTime.indexOf(' @'));
         let time = senderAndTime.substring(senderAndTime.indexOf(' @')+2);
         

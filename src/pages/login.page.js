@@ -1,3 +1,4 @@
+// Import for the InfoPage to be able to call the pageIsLoaded method on the login method
 import InfoPage from "~/src/pages/info.page.js";
 let infoPage = new InfoPage();
 
@@ -25,6 +26,7 @@ class LoginPage {
     // Fix me!
     this.extensionField.setValue(extension);
     this.loginButton.click();
+    // Validate that the InfoPage loads after login
     infoPage.pageIsLoaded();
   }
 }
